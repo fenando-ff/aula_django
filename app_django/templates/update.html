@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django</title>
+    {% load static %}
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>{{ usuario.id }} - {{ usuario.nome }} - {{ usuario.email }} - {{ usuario.senha }}</h2>
+
+    <form action = "{% url 'update' usuario.id %}" method="POST">
+        {% csrf_token %}
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" value="{{usuario.nome}}">
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{usuario.email}}">
+
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" value="{{usuario.senha}}">
+
+        <button type-"submit">Modificar</button>
+    </form>
+</body>
+</html>

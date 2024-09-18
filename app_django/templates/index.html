@@ -13,7 +13,10 @@
 
     <ul>
         {% for usuario in usuarios %}
-            <li>{{ usuario.id }} - {{ usuario.nome }} - {{ usuario.email }} - {{ usuario.senha }}</li>
+            <li>{{ usuario.id }} - {{ usuario.nome }} - {{ usuario.email }} - {{ usuario.senha }}
+                <a href="{% url "editar" usuario.id %}">Editar</a>
+                <a href="{% url "delete" usuario.id %}">Deletar</a>
+            </li>
         {% endfor %}
     </ul>
 
