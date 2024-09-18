@@ -17,7 +17,7 @@
         {% endfor %}
     </ul>
 
-    <form action = "{% url "salvar" %}">
+    <form action = "{% url 'salvar' %}" method="POST">
         {% csrf_token %}
         <label for="nome">Nome:</label>
         <input type="text" name="nome">
