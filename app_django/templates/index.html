@@ -9,33 +9,49 @@
     <link rel="stylesheet" href="{% static 'css/user.css' %} ">
 </head>
 <body>
-    <h1>Lista de Usuários</h1>
 
-    <ul>
-        {% for usuario in usuarios %}
-            <li>{{ usuario.id }} - {{ usuario.nome }} - {{ usuario.email }} - {{ usuario.senha }}
-                <a href="{% url "editar" usuario.id %}">Editar</a>
-                <a href="{% url "delete" usuario.id %}">Deletar</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <section class="sessao lista">
+        <h1>Lista de Usuários</h1>
+        <ul class="lista-user">
+            {% for usuario in usuarios %}
+                <li class="item-user">{{ usuario.nome }} - {{ usuario.email }} - {{ usuario.senha }}
+                    <a href="{% url "editar" usuario.id %}"> <button>Editar</button> </a>
+                    <a href="{% url "delete" usuario.id %}"> <button>Deletar</button> </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <section class="sessao form">
+        <form action = "{% url 'salvar' %}" method="POST">
+            {% csrf_token %}
+    
+            <div class="campo">
+                <h1>Cadastrar</h1>
+                <label class="texto-form" for="nome">Nome:</label>
+                <input class="input" type="text" name="nome">
+            </div>
+            
+            <div class="campo">
+                <label class="texto-form" for="email">Email:</label>
+                <input class="input" type="email" name="email">
+            </div>
+    
+            <div class="campo">
+                <label class="texto-form" for="senha">Senha:</label>
+                <input class="input" type="password" name="senha">
+            </div>
+            
+            <div class="campo">
+                <label class="texto-form" for="conf">Confirmar senha:</label>
+                <input class="input" type="password" name="conf">
+            </div>
+            
+            <button type="submit">Salvar</button>
+    
+        </form>
+    </section>
 
-    <form action = "{% url 'salvar' %}" method="POST">
-        {% csrf_token %}
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome">
-
-        <label for="email">Email:</label>
-        <input type="email" name="email">
-
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha">
-        
-        <label for="conf">Confirmar senha:</label>
-        <input type="password" name="conf">
-
-        <button type="submit">Salvar</button>
-
-    </form>
+    <script src="{% static "js/user.js" %}"></script>
 </body>
 </html>

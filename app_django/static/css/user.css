@@ -4,5 +4,24 @@
 }
 
 body {
-    background-color: aquamarine;
+    font-family: sans-serif;
 }
+
+.sessao {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.lista {
+    padding: 10px;
+}
+
+
+.form {
+    padding: 10px;
+}
+
+
+
