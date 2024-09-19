@@ -11,9 +11,15 @@ def salvar(request):
     n_nome = request.POST.get("nome")
     n_email = request.POST.get("email")
     n_senha = request.POST.get("senha")
-    USUARIO.objects.create(nome = n_nome, email = n_email, senha = n_senha) 
-    usuario = USUARIO.objects.all()
-    return render(request, 'index.html', {'usuarios': usuario})
+    n_conf = request.POST.get("conf")
+    
+    if n_conf == n_senha:
+        USUARIO.objects.create(nome = n_nome, email = n_email, senha = n_senha) 
+        usuario = USUARIO.objects.all()
+        return render(request, 'index.html', {'usuarios': usuario})
+    else:
+        avisos = 'As senhas não são iguais'
+        return render(request, 'index.html', {'avisos': avisos})
 
 def pegarId(request,id):
     usuarios = USUARIO.objects.get(id = id)

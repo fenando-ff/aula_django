@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fornecedor</title>
+    {% load static %}
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Lista de Fornecedores</h1>
+
+    <ul>
+        {% for fornecedor in fornecedores %}
+            <li>
+                {{ fornecedor.id }} - {{ fornecedor.nome_f }} - {{ fornecedor.cnpj }} - {{ fornecedor.produto }} - {{ fornecedor.descricao }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" action="{% url 'registrar' %}"> 
+        {% csrf_token %}
+
+        <label for="forne">Fornecedor:<label>
+        <input type="text" name="forne">
+
+        <label for="cnpj">CNPJ:<label>
+        <input type="text" name="cnpj" max-length="18">
+
+        <label for="prod">Produto:<label>
+        <input type="text" name="prod">
+
+        <label for="desc">Descrição:<label>
+        <input type="text" name="desc">
+
+        <button type="submit">Registrar</button>
+    </form>
+</body>
+</html>
